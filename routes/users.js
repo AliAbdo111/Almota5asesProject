@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const User = require("../models/User");
-const UserCountrol=require('../Controles/UserCountrol')
+const UserCountrol=require('../Controllers/UserCountrol')
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");

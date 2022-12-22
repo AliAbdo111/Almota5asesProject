@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const USerSchema = mongoose.Schema({
+const USerSchema = new mongoose.Schema({
   Name: {
     type: String,
     require: true,
@@ -26,10 +26,10 @@ const USerSchema = mongoose.Schema({
   image: {
     type: String,
   },
-  College: {
+  faculty: {
     type: String,
   },
-  teams: {
+  band:{
     type: String,
   },
   token:{
@@ -40,6 +40,22 @@ const USerSchema = mongoose.Schema({
       type: Object,
     },
   ],
+  commentes:[
+    {
+      type:String
+    }
+  ]
 });
-USerSchema.path('email').validate(async()=>{return false},"Email already Exist")
+USerSchema.statics.isEmailuse=async function (email){
+ if(!email) throw new Error('invalid Email');
+ try {
+  const user =await this.findOne({email:email})
+  if(user) return false ;
+  return true ;
+ } catch (error) {
+  console.log(`error inside isEmail method` ,error)
+ }
+}
+
+
 module.exports=mongoose.model('User',USerSchema)

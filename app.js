@@ -3,7 +3,7 @@ var express = require('express');
 var logger = require('morgan');
  const path= require('path')
  const cors =require('cors')
-  const connect=require('./conficration/conctionDb')
+ const connect=require('./configuration/conctionDb')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
@@ -15,7 +15,7 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json())
 app.use(express.urlencoded({extended:true }))
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -29,7 +29,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // render the error message
   res.status(err.status || 500);
   res.json({
     message:err.message

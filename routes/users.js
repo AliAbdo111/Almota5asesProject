@@ -1,6 +1,9 @@
 var express = require("express");
 var router = express.Router();
 
+const User = require("../models/User");
+const UserCountrol=require('../Controllers/UserCountrol')
+
 const path = require("path");
 const multer = require("multer");
 const authorization = require("../Middlewares/authentication");
@@ -27,6 +30,7 @@ const uploade = multer({
   fileFilter: fileFillter,
 });
 const UserCountrol = require("../Controllers/UserCountroller");
+
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");

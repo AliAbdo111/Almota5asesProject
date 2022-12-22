@@ -1,8 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const User = require("../models/User");
+
 const path = require("path");
 const multer = require("multer");
+const authorization = require("../Middlewares/authentication");
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
     cd(null, "./puplic/images/");
@@ -42,7 +43,7 @@ router.get("/all/:pagNumber", UserCountrol.getAllUsers);
 // getuserByType
 router.get("/user/:type", UserCountrol.getUserByType);
 //delete user
-router.delete("/:id", UserCountrol.deleteUser);
+router.delete("/:id", authorization, UserCountrol.deleteUser);
 // search about user
 router.get("/search/:name", UserCountrol.search);
 // update in user data

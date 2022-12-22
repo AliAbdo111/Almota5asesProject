@@ -34,16 +34,17 @@ module.exports = {
   //   Sign in user
   signIn: async (req, res) => {
     try {
+      const body = req.body;
       const data = await User.findOne({ email: body.email });
       if (data) {
         const VAlidPassw = await bcrypt.compare(body.password, data.password);
         if (VAlidPassw) {
           res.status(200).json({ message: "the user login", data: data });
         } else {
-          res.status(403).json({ message: "invalied password" });
+          res.status(401).json({ message: "invalied password" });
         }
       } else {
-        res.status(404).json({ message: "the user not register" });
+        res.status(401).json({ message: "the user not register" });
       }
     } catch (err) {
       res.json(`can not sign in ${err}`);

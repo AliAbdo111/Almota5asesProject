@@ -9,13 +9,10 @@ module.exports = async (req, res, next) => {
       const token = authorization;
       const user = await User.findOne({ token: token });
       if (!user) throw new Error("Unauthorized")
-       next()
-      
+       next()  
     }
   } catch (error) {
     res.status(401)
   next(error)
-  
-  
   }
 };

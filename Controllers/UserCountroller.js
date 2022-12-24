@@ -2,8 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const SECRET_KEY=process.env.SECRET_KEY;
-
+ const {SECRET_KEY, SALT_ROUNDES} = require('../Config')
 module.exports = {
   // Crud Opration User Modules
   // sign up user

@@ -1,6 +1,7 @@
 // Connecting to the database
+const {MONGO_URI}= require('../Config');
 const mongoose = require("mongoose"); 
-const url ="mongodb+srv://aliomran_11:aliomran_11@cluster0.acjzw0f.mongodb.net/test?retryWrites=true&w=majority"
+const url =MONGO_URI
 mongoose.set('strictQuery', true);
 
 const connect = async function() {

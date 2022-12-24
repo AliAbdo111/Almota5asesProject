@@ -1,5 +1,6 @@
 var createError = require('http-errors');
-require('dotenv').config()
+require('./Config')
+
 var express = require('express');
 var logger = require('morgan');
  const path= require('path')

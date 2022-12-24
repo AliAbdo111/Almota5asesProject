@@ -36,11 +36,11 @@ router.post("/signup", UserCountrol.AddNewUser);
 /*sign in uersr*/
 router.post("/signIn", UserCountrol.signIn);
 /*get User By Id*/
-// router.get('/:id',UserCountrol.getUserById)
+router.get('/ById/:id',UserCountrol.getUserById)
 // get all users
 router.get("/all/:pagNumber", UserCountrol.getAllUsers);
 // getuserByType
-router.get("/user/:type", UserCountrol.getUserByType);
+router.get("/ByType/:type", UserCountrol.getUserByType);
 //delete user
 router.delete("/:id", authorization, UserCountrol.deleteUser);
 // search about user

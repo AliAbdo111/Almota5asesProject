@@ -2,13 +2,14 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const SECRET_KEY=process.env.SECRET_KEY;
 
 module.exports = {
   // Crud Opration User Modules
   // sign up user
   AddNewUser: async (req, res) => {
     try {
-      const body = req.body;
+      const body = req.body; 
       const newUser = await User.isEmailuse(body.email);
       if (!newUser)
         return res.json({
@@ -16,7 +17,7 @@ module.exports = {
           success: false,
         });
       const cryPassword = await bcrypt.hash(body.password, 10);
-      const token = jwt.sign({ email: body.email }, "Aboalhassan_key");
+      const token = jwt.sign({ email: body.email }, SECRET_KEY);
       const user = User.create({
         ...body,
         token: token,
@@ -39,7 +40,7 @@ module.exports = {
       if (data) {
         const VAlidPassw = await bcrypt.compare(body.password, data.password);
         if (VAlidPassw) {
-          res.status(200).json({ message: "the user login", data: data });
+          res.status(200).json({ message: "the user login", token: data.token });
         } else {
           res.status(401).json({ message: "invalied password" });
         }

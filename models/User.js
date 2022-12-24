@@ -29,6 +29,9 @@ const USerSchema = new mongoose.Schema({
   faculty: {
     type: String,
   },
+  Certificate: {
+    type: String,
+  },
   band:{
     type: String,
   },

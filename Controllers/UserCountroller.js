@@ -40,7 +40,7 @@ module.exports = {
       if (data) {
         const VAlidPassw = await bcrypt.compare(body.password, data.password);
         if (VAlidPassw) {
-          res.status(200).json({ message: "the user login", token: data.token });
+          res.status(200).json({ message: "the user login", data: {token : data.token , id:data._id,userType: data.userType} });
         } else {
           res.status(401).json({ message: "invalied password" });
         }

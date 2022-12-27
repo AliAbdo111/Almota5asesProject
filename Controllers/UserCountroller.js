@@ -24,6 +24,7 @@ module.exports = {
       });
       if (user) {
         res.status(200).json({ message: " the user created" });
+        
       } else {
         res.status(404).json({ message: "the user not created" });
       }

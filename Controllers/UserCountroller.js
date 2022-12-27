@@ -53,7 +53,7 @@ module.exports = {
   // Read=>  get user By Id
   getUserById: async (req, res) => {
     const _id = req.params.id || {};
-    const user = await User.findById(_id);
+    const user = await User.findById({_id});
     if (user) {
       res.status(200).json({
         message: `you get user by id`,

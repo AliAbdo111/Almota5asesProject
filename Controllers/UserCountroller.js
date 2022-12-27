@@ -131,6 +131,19 @@ module.exports = {
       res.status(404).json(`error wehen update user =>${err}`);
     }
   },
+  //  add image to user
+addImage: async (req, res) => {
+  try {
+    const id = req.params.id || {};
+    const Data=await  User.findById(id);
+    const image = req.file.path;
+      Data.image = image;
+    const user = await User.findByIdAndUpdate(id, Data);
+    res.status(200).json("the user already update ");
+  } catch (err) {
+    res.status(404).json(`error wehen add Image user =>${err}`);
+  }
+}, 
   // changePassword
   chagPassword: async (req, res) => {
     try {

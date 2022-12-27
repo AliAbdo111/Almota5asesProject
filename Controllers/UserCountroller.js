@@ -124,13 +124,11 @@ module.exports = {
     try {
       const id = req.params.id || {};
       const body = req.body;
-      const userData = await User.findById(id);
-      userData.image = req.file.path;
-      const image = userData.image;
-      const user = await User.findByIdAndUpdate(id, { ...body, image: image });
+      console.log(body);
+      const user = await User.findByIdAndUpdate(id, body);
       res.status(200).json("the user already update ");
     } catch (err) {
-      res.json(`error wehen update user =>${err}`);
+      res.status(404).json(`error wehen update user =>${err}`);
     }
   },
   // changePassword

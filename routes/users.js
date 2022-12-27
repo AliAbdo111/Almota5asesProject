@@ -46,7 +46,7 @@ router.delete("/:id", authorization, UserCountrol.deleteUser);
 // search about user
 router.get("/search/:name", UserCountrol.search);
 // update in user data
-router.put("/:id", uploade.single('image'), UserCountrol.update);
+router.put("/:id", UserCountrol.update);
 // Change PAssword"
 router.put("/changePasss/:id", UserCountrol.chagPassword);
 module.exports = router;

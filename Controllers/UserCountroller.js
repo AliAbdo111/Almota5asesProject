@@ -131,18 +131,37 @@ module.exports = {
       res.status(404).json(`error wehen update user =>${err}`);
     }
   },
+  //  add image to user
+addImage: async (req, res) => {
+  try {
+    const id = req.params.id || {};
+    const Data=await  User.findById(id);
+    const image = req.file.path;
+      Data.image = image;
+    const user = await User.findByIdAndUpdate(id, Data);
+    res.status(200).json("the user already update ");
+  } catch (err) {
+    res.status(404).json(`error wehen add Image user =>${err}`);
+  }
+}, 
   // changePassword
   chagPassword: async (req, res) => {
     try {
       const id = req.params.id;
+      const user= await User.findById(id);
+      console.log(user);
+      const cuorPassword = req.body.cuorPassword;
       const password = req.body.password;
-      const hashPassword = await bcrypt.hash(password, 12);
-      const body = req.body;
-      const dataUser = await User.findByIdAndUpdate(id, {
-        ...body,
-        password: hashPassword,
-      });
+
+      const ValidPass = await bcrypt.compare(cuorPassword, user.password);
+      console.log(ValidPass);
+      if (ValidPass) {
+        user.password = await bcrypt.hash(password, 10);
+      const dataUser = await User.findByIdAndUpdate(id,user);
+      await user.save();
       res.status(200).json(" password update");
+      } else {
+        res.status(404).json("the password incorrect");}
     } catch (err) {
       res.status(404).json(err.message);
     }

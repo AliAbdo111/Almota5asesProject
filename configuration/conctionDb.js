@@ -5,7 +5,11 @@ const url =MONGO_URI
 mongoose.set('strictQuery', true);
 
 const connect = async function() {
-    await mongoose.connect(url);
+    await mongoose.connect(url ,{
+        useNewUrlParser: true,
+        // useFindAndModify: false,
+        useUnifiedTopology: true
+    });
     console.log("You are connected to your database");
 }
 

@@ -24,6 +24,7 @@ module.exports = {
       });
       if (user) {
         res.status(200).json({ message: " the user created" });
+        
       } else {
         res.status(404).json({ message: "the user not created" });
       }
@@ -53,7 +54,7 @@ module.exports = {
   // Read=>  get user By Id
   getUserById: async (req, res) => {
     const _id = req.params.id || {};
-    const user = await User.findById(_id);
+    const user = await User.findById({_id});
     if (user) {
       res.status(200).json({
         message: `you get user by id`,

@@ -23,7 +23,7 @@ const fileFillter = (req, file, cd) => {
 const uploade = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 10 * 5,
+    fileSize: 1024 * 1000 * 5,
   },
   fileFilter: fileFillter,
 });
@@ -46,7 +46,7 @@ router.delete("/:id", authorization, UserCountrol.deleteUser);
 // search about user
 router.get("/search/:name", UserCountrol.search);
 // update in user data
-router.put("/:id", uploade.single("image"), UserCountrol.update);
-// Change PAssword
+router.put("/:id", uploade.single('image'), UserCountrol.update);
+// Change PAssword"
 router.put("/changePasss/:id", UserCountrol.chagPassword);
 module.exports = router;

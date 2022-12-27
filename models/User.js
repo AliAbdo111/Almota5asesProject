@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const USerSchema = mongoose.Schema(
   {
     Name: {
@@ -61,6 +62,14 @@ USerSchema.statics.isEmailuse = async function (email) {
   } catch (error) {
     console.log(`error inside isEmail method`, error);
   }
+  
 };
+USerSchema.pre("updateOne", async function (next) {
+const User = this.model("User");
+if(User.isModified("password")) {
+  User.password= await bcrypt.hash(User.password, 10);
+    }
+
+})
 
 module.exports = mongoose.model("User", USerSchema);

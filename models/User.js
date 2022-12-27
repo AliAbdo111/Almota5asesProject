@@ -27,6 +27,7 @@ const USerSchema = mongoose.Schema(
     },
     image: {
       type: String,
+      default:'../puplic/defult/default-avatar-profile-icon-vector-18942381.jpg'
     },
     faculty: {
       type: String,

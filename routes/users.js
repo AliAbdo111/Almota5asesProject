@@ -51,5 +51,5 @@ router.put("/:id", UserCountrol.update);
 router.put("/addImage/:id", uploade.single('image'), UserCountrol.addImage);
 
 // Change PAssword"
-router.put("/changePasss/:id", UserCountrol.chagPassword);
+router.put("/changePasss/:id", UserCountrol.changPassword);
 module.exports = router;

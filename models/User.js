@@ -29,6 +29,9 @@ const USerSchema = mongoose.Schema(
       type: String,
       default:'https://res.cloudinary.com/dqwqtvl0b/image/upload/v1672244314/function%20profile%28%29%20%7B%20%5Bnative%20code%5D%20%7D/xccxqzdakbppvc7x8bil.png'
 },
+cloudinary_id:{
+  type:String,
+},
     faculty: {
       type: String,
     },
@@ -50,7 +53,7 @@ const USerSchema = mongoose.Schema(
   },
   {
     versionKey: false,
-    strict: false,
+    strict: true,
   },
   { timestamps: true }
 );

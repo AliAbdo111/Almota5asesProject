@@ -5,26 +5,10 @@ const UserCountrol = require("../Controllers/UserCountroller");
 const path = require("path");
 const multer = require("multer");
 const authorization = require("../Middlewares/authentication");
-const storage = multer.diskStorage({
-  destination: (req, file, cd) => {
-    cd(null, "./puplic/images/");
-  },
-  filename: (req, file, cd) => {
-    cd(null, new Date().toDateString() + file.originalname);
-  },
-});
-const fileFillter = (req, file, cd) => {
-  if (file.mimetype === "image/jpeg") {
-    cd(null, true);
-  } else {
-    cd(new Error("please uplaod jpg file"), false);
-  }
-};
+const  {storage ,limits ,fileFillter}= require('../Services/multer')
 const uploade = multer({
   storage: storage,
-  limits: {
-    fileSize: 1024 * 1000 * 5,
-  },
+  limits: limits,
   fileFilter: fileFillter,
 });
 /* GET users listing. */
@@ -48,7 +32,7 @@ router.get("/search/:name", UserCountrol.search);
 // update in user data
 router.put("/:id", UserCountrol.update);
 // add Image
-router.put("/addImage/:id", uploade.single('image'), UserCountrol.addImage);
+router.put("/addImage/:id" ,uploade.single('image'), UserCountrol.addImage);
 
 // Change PAssword"
 router.put("/changePasss/:id", UserCountrol.chagPassword);

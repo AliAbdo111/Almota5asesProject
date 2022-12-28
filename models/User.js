@@ -27,8 +27,8 @@ const USerSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      default:'../puplic/defult/default-avatar-profile-icon-vector-18942381.jpg'
-    },
+      default:'https://res.cloudinary.com/dqwqtvl0b/image/upload/v1672244314/function%20profile%28%29%20%7B%20%5Bnative%20code%5D%20%7D/xccxqzdakbppvc7x8bil.png'
+},
     faculty: {
       type: String,
     },

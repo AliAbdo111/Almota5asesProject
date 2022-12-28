@@ -2,7 +2,9 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
- const {SECRET_KEY, SALT_ROUNDES} = require('../Config')
+const cloudinary =require('../configuration/cloudinary')
+ const {SECRET_KEY, SALT_ROUNDES} = require('../Config');
+const { profile } = require("console");
 module.exports = {
   // Crud Opration User Modules
   // sign up user
@@ -133,11 +135,13 @@ module.exports = {
   },
   //  add image to user
 addImage: async (req, res) => {
-  try {
-    const id = req.params.id || {};
+  try {    const id = req.params.id || {};
     const Data=await  User.findById(id);
-    const image = req.file.path;
-      Data.image = image;
+    const resulte = await cloudinary.uploader.upload(req.file.path,{
+      folder:profile
+    })
+// console.log(resulte.secure_url);
+    Data.image= resulte.secure_url
     const user = await User.findByIdAndUpdate(id, Data);
     res.status(200).json("the user already update ");
   } catch (err) {

@@ -154,23 +154,23 @@ addImage: async (req, res) => {
   }
 }, 
   // changePassword
-  chagPassword: async (req, res) => {
+  changPassword: async (req, res) => {
     try {
       const id = req.params.id;
       const user= await User.findById(id);
-      console.log(user);
-      const cuorPassword = req.body.cuorPassword;
+      // console.log(user);
+      const currentPassword = req.body.currentPass;
       const password = req.body.password;
 
-      const ValidPass = await bcrypt.compare(cuorPassword, user.password);
-      console.log(ValidPass);
+      const ValidPass = await bcrypt.compare(currentPassword, user.password);
+      // console.log(ValidPass);
       if (ValidPass) {
         user.password = await bcrypt.hash(password, 10);
       const dataUser = await User.findByIdAndUpdate(id,user);
       await user.save();
       res.status(200).json(" password update");
       } else {
-        res.status(404).json("the password incorrect");}
+        res.status(401).json("the password incorrect");}
     } catch (err) {
       res.status(404).json(err.message);
     }

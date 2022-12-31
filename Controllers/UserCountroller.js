@@ -79,7 +79,7 @@ module.exports = {
       if (data) {
         res
           .status(200)
-          .json({ message: "you get ALL USERS", data: { ...data, numOfPage } });
+          .json({ message: "you get ALL USERS", data:[...data] , numOfPage : numOfPage }); //error must be return Array of Data not this { ...data, numOfPage }
       } else {
         res.status(404).json({ message: "error wehen you get users" });
       }

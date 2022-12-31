@@ -2,11 +2,11 @@ const CourseService=require('../Services/CourseService')
 module.exports = class Course{
     static async apiGetAllCoursess(req, res, next){
         try {
-          const courses = await CourseService.getAllCourses();
+     console.log('hello')
+       const courses = await CourseService.getAllCourses();
           if(!courses){
              res.status(404).json("There are no courses published yet!")
-          }
-          res.json(courses);
+          } else{ res.json({message:"you get all courses" ,data:courses});}
         } catch (error) {
            res.status(500).json({error: error})
         }
@@ -32,7 +32,7 @@ module.exports = class Course{
      static async apiUpdateCourse(req, res, next){
         try {
           
-           const updatedCourse = await CourseService.updateCourse(req.body);
+           const updatedCourse = await CourseService.updateCourse(req.params.id,req.body);
   
            if(updatedCourse.modifiedCount === 0){
               throw new Error("Unable to update course");
@@ -48,7 +48,7 @@ module.exports = class Course{
         try {
            const courseId = req.params.id;
            const deleteResponse =  await CourseService.deleteCourse(courseId)
-           res.json(deleteResponse);
+           res.json({message:"the course Deleted",  data:deleteResponse});
         } catch (error) {
            res.status(500).json({error: error})
         }

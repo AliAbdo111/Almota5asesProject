@@ -5,8 +5,8 @@ class CourseService{
     {
         try
         {
-            const data=await Course.create(data);
-            return data;
+            const course=await Course.create(data);
+            return course;
         }catch(err)
         {
             console.log(`can not create course. ${err}`)
@@ -37,7 +37,7 @@ class CourseService{
             console.log(`Could not update Course ${error}`);
 
     }
-}
+    }
 static async deleteCourse(courseId){
     try {
         const deletedResponse = await Course.findOneAndDelete(courseId);
@@ -46,7 +46,7 @@ static async deleteCourse(courseId){
         console.log(`Could not delete Course ${error}`);
     }
 
-}
+    }
 }
 
 module.exports=CourseService;

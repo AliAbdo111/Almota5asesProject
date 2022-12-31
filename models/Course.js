@@ -4,21 +4,20 @@ const courseSchema = mongoose.Schema(
   {
     title: String,
     price: Number,
-    instructor: { type: Schema.Types.ObjectId, ref: "User" },
+    instructor: { type:mongoose.Schema.Types.ObjectId, ref: "User" },
     descrption: String,
     material: Array,
     veidos: Array,
     demo: String,
-    users: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+    users: [{type:mongoose.Schema.Types.ObjectId, ref: "User"}],
     commentes:[{
     comment:String ,
     Poster: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
     }],
-    category: {
+    department:{
       type: String,
-      enum: ["theoretical", "Practical", "Summary"],
     },
-    subCategory: {
+    band: {
       type: String,
       enum: ["first", "second", "Third", "Fourth", "general"],
     },

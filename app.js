@@ -6,10 +6,12 @@ var logger = require("morgan");
 const path = require("path");
 const cors = require("cors");
 const connect = require("./configuration/conctionDb");
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var app = express();
-
+const { Router } = require("express");
+const app = express();
+// ipmort Routing 
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const courseRouter = require("./routes/course");
 connect();
 
 app.use(logger("dev"));
@@ -19,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 // app.use('/', indexRouter);
 app.use("/users", usersRouter);
+app.use("/course", courseRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -37,5 +40,5 @@ app.use(function (err, req, res, next) {
     message: err.message,
   });
 });
-
+module.exports=Router()
 module.exports = app;

@@ -1,8 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const User = require("../models/User");
 const UserCountrol = require("../Controllers/UserCountroller");
-const path = require("path");
 const multer = require("multer");
 const authorization = require("../Middlewares/authentication");
 const  {storage ,limits ,fileFillter}= require('../Services/multer')
@@ -12,9 +10,7 @@ const uploade = multer({
   fileFilter: fileFillter,
 });
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
-});
+
 /*singup users listing*/
 router.post("/signup", UserCountrol.AddNewUser);
 /*sign in uersr*/

@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 
 const facultySchema = mongoose.Schema({
-  facultyName: String,
+  facultyName: {
+    type:String,
+      required:true, 
+      trim: true,
+      lowercase: true},
 
-department:[{
-  departmentName: String,
-}],
+// departments:[{
+//   departmentName: mongoose.Schema.Types.ObjectId,
+//   ref:"Department"
+// }],
 //   Ferqa 
 band:{ 
     type: String,

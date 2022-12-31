@@ -15,7 +15,9 @@ const courseSchema = mongoose.Schema(
     Poster: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
     }],
     department:{
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Department"
+
     },
     band: {
       type: String,

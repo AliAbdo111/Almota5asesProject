@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 const departmentSchema = new mongoose.Schema({
     departmentName:String,
     departmentImage:String,
-   departmentCourses:[{
+    faculty:{
     type: mongoose.Schema.Types.ObjectId,
-    ref:'Course'}]
-
-})
+    ref:'Faculty',
+    require:[true,'department must have faculty'],
+    }
+},
+{
+    versionKey: false,
+    strict: false,
+},
+{ timestamps: true })
+module.exports=mongoose.model('Department',departmentSchema);

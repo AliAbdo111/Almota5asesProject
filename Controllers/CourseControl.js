@@ -2,7 +2,7 @@ const CourseService=require('../Services/CourseService')
 module.exports = class Course{
     static async apiGetAllCoursess(req, res, next){
         try {
-     console.log('hello')
+
        const courses = await CourseService.getAllCourses();
           if(!courses){
              res.status(404).json("There are no courses published yet!")

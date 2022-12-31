@@ -4,7 +4,7 @@ const facultySchema = mongoose.Schema({
   facultyName: String,
 
 department:[{
-  departmentName: departmentName,
+  departmentName: String,
 }],
 //   Ferqa 
 band:{ 

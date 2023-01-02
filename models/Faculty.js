@@ -5,18 +5,19 @@ const facultySchema = mongoose.Schema({
     type:String,
       required:true, 
       trim: true,
-      lowercase: true},
+      lowercase: true
+    },
 
 // departments:[{
 //   departmentName: mongoose.Schema.Types.ObjectId,
 //   ref:"Department"
 // }],
 //   Ferqa 
-band:{ 
-    type: String,
-    enum: ["first", "second", "Third", "Fourth"],}
-}
-,{
+// band:{ 
+//     type: String,
+//     enum: ["first", "second", "Third", "Fourth"],}
+// }
+// ,{
     versionKey: false,
     strict: false,
 },

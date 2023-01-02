@@ -1,5 +1,7 @@
 const express =require('express')
-const router = express.Router()
+// mergeParams allwo us to accses parmeter on anther routing        
+// ex :we need access facultyId from faculty router
+const router = express.Router({mergeParams:true})
 const departmentControl =require('../Controllers/departmentControl')
 router.get('/', departmentControl.getAllDepartments)
 router.get('/:id', departmentControl.getDepartment)

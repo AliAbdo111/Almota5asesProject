@@ -2,10 +2,14 @@ const { ifError } = require("assert");
 const path = require("path");
 const Department = require("../models/Department");
 module.exports = {
+  // get url/faculty/:facultyId/deprtments 
     getAllDepartments:async(req, res)=>
     {
       try{
-  let departments = await Department.find({})
+        console.log(req.params.facultyId);
+       let fillter={};
+        if(req.params.facultyId) fillter={faculty:req.params.facultyId}
+  let departments = await Department.find(fillter)
   .populate({path:'faculty', select:'facultyName'})
   if(!departments){
     res.status(404).json({message:"No departments found"})
@@ -26,13 +30,14 @@ module.exports = {
     }
   },
   modifyDepartment: async (req, res) => {
-    const id = req.params.id;
+
+    const id =req.params.id;
     const body = req.body;
-    const department = await Department.updateOne({id:id}, body);
+    const department = await Department.findByIdAndUpdate({_id:id}, body);
     if (!department) {
       res.status(404).json;
     }else{
-      res.status(200).json({message:'data updated', data :department});
+      res.status(200).json({message:'data updated'});
 
 
     }
@@ -55,12 +60,12 @@ module.exports = {
      },
   deleteDepartment:async(req, res) => {
     try{
-      console.log(req);
-   const department =await Department.deleteOne({_id: req.params.id});
+      // console.log(req);
+   const department =await Department.findByIdAndDelete({_id: req.params.id});
       if(!department){
         res.status(404).json('error when delete department')
       }else{
-        res.status(200).json({message:"the department deleted" ,data:department})
+        res.status(200).json({message:"the department deleted"})
       }
     }catch(e){
   res.status(500).json(e)

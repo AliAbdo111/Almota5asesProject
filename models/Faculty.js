@@ -5,7 +5,7 @@ const facultySchema = mongoose.Schema({
     type:String,
       required:true, 
       trim: true,
-      lowercase: true
+     
     },
 
 // departments:[{

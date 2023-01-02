@@ -20,6 +20,14 @@ module.exports = {
   },
   updateFaculty: async (req, res) => {
     try {
+      const body = req.body;
+      const _id = req.params.id;
+      const faculty = await Faculty.findOneAndUpdate(_id, body, { new: true });
+      if (!faculty) {
+        res.status(404).json({ message: "Faculty not found" });
+      } else {
+        res.status(200).json("the faculty is updated");
+      }
     } catch (e) {
       res.status(500).send({ message: "something went wrong" });
     }
@@ -27,22 +35,26 @@ module.exports = {
   deleteFaculty: async (req, res) => {
     try {
       const _id = req.params.id;
-      const faculty = await Faculty.deleteOne(_id);
+      const faculty = await Faculty.findByIdAndDelete(_id);
       if (!faculty) {
-        res.status(404).json("error whene you delet faculty");
+        res.status(404).json("the Faculty not founded");
       }
-      res.status(200).json(faculty);
+      res.status(200).json("the Faculty already deleted");
     } catch (e) {
       res.status(500).json({ message: "something went wrong" });
     }
   },
   getFaculty: async (req, res) => {
-    try{
-        const _id = req.params.id;
-        const faculty = await Faculty.findOne({ _id });
+    try {
+      const _id = req.params.id;
+      const faculty = await Faculty.findOne({ _id });
+      if (!faculty) {
+        res.status(404).json(" the Faculty not founded");
+      } else {
         res.status(200).json(faculty);
-        }catch(e){
-            res.status(500).json({ message: "something went wrong" });
-        }
+      }
+    } catch (e) {
+      res.status(500).json({ message: "something went wrong when get" });
+    }
   },
 };

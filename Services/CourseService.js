@@ -58,6 +58,16 @@ static async deleteCourse(courseId){
         }
     
     }
+     static async getCourses(filter){
+        try {
+            const response =  await Course.find(filter).populate({path:"department", select:"departmentName"});
+            return response;
+        } catch (error) {
+            console.log(`Course not found. ${error}`)
+        }
+    
+    }
+
 }
 
 module.exports=CourseService;

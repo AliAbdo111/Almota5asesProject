@@ -26,12 +26,9 @@ const courseSchema = mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["Tal5es", "Course"],
-    },
-    watch: {
-      type: Boolean,
-      default: false,
-    },
+      enum : ['theoretical','Practical','Summary'],
+  },
+  
   },
   {
     versionKey: false,

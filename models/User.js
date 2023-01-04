@@ -44,12 +44,17 @@ cloudinary_id:{
     token: {
       type: String,
     },
-    corsses: [
+    Courses: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course",
       },
+
     ],
+    watch: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     versionKey: false,

@@ -2,6 +2,7 @@ const CourseService=require('../Services/CourseService')
 module.exports = class Course{
     static async apiGetAllCoursess(req, res, next){
         try {
+console.log(req.params)
 
        const courses = await CourseService.getAllCourses();
           if(!courses){
@@ -52,5 +53,14 @@ module.exports = class Course{
         } catch (error) {
            res.status(500).json({error: error})
         }
+  }
+  static async apiGetCourse(req, res, next){
+    try {
+        const course = await CourseService.getCoursebyId(req.params.id);
+        res.json(course);
+    } catch (error) {
+        res.status(500).json({error: error})
+    }
+
   }
 }

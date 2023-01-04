@@ -14,7 +14,9 @@ class CourseService{
     }
     static async getAllCourses(){
         try {
-            const allCourses = await  Course.find();
+        
+            const allCourses = await  Course.find().populate({path:"department", select:"departmentName"});
+
             return allCourses;
         } catch (error) {
             console.log(`Could not fetch Courses ${error}`)
@@ -46,6 +48,15 @@ static async deleteCourse(courseId){
         console.log(`Could not delete Course ${error}`);
     }
 
+    }
+    static async getCoursebyId(courseId){
+        try {
+            const response =  await Course.findById({_id:courseId});
+            return response;
+        } catch (error) {
+            console.log(`Course not found. ${error}`)
+        }
+    
     }
 }
 

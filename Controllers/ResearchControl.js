@@ -66,7 +66,7 @@ module.exports = {
       const body = req.body;
       const _id = req.params.id;
       const research = await Research.findById(_id)
-      .populate({ path: "publisher", select:["email" ,"Name" ,"address"]})
+       .populate({ path: "publisher", select:["email" ,"Name" ,"address"]})
       
       if (!research) {
         res.status(400).json({ message: "research not found" });

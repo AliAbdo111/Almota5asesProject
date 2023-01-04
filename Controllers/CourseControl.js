@@ -54,9 +54,11 @@ console.log(req.params)
            res.status(500).json({error: error})
         }
   }
-  static async apiGetCourse(req, res, next){
+  static async apiGetCourses(req, res, next){
     try {
-        const course = await CourseService.getCoursebyId(req.params.id);
+         let type=req.params.type;
+         let departmentId=req.params.departmentId;
+        const course = await CourseService.getCoursebyId({type:type,department:departmentId});
         res.json(course);
     } catch (error) {
         res.status(500).json({error: error})

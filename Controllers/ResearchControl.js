@@ -50,7 +50,8 @@ module.exports = {
     try {
     //   const body = req.body;
       console.log("kkkkk");
-      const research = await Research.find({});
+      const research = await Research.find({})
+      .populate({ path: "publisher", select:["email" ,"Name" ,"address"]})
       if (!research) {
         res.status(400).json({ message: "research not found" });
       } else {
@@ -64,13 +65,15 @@ module.exports = {
     try {
       const body = req.body;
       const _id = req.params.id;
-      const research = await Research.findById(_id);
+      const research = await Research.findById(_id)
+      .populate({ path: "publisher", select:["email" ,"Name" ,"address"]})
+      
       if (!research) {
         res.status(400).json({ message: "research not found" });
       } else {
         res.status(200).json({ message: "research found", data: research });
       }
-    } catch (e) {
+    } catch (e) { 
       res.status(500).json({ message: "Something went wrong!" });
     }
   },

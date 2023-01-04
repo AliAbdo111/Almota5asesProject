@@ -9,8 +9,13 @@ const researchSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    phoneNumber: {
+        type: String,
+        required: true
+    },
     publisher:{
         type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
         required: true
     },
     

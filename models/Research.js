@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-const SchemaResearch = mongoose.Schema({
+const researchSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -12,7 +12,13 @@ const SchemaResearch = mongoose.Schema({
     publisher:{
         type: mongoose.Schema.Types.ObjectId,
         required: true
-    }
-})
-module.exports=mongoose.model('Research',SchemaResearch);
+    },
+    
+},
+{
+    versionKey: false,
+    strict: true,
+  },
+  { timestamps: true })
+module.exports=mongoose.model('Research',researchSchema);
 ;

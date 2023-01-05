@@ -12,6 +12,10 @@ const app = express();
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const courseRouter = require("./routes/course");
+const facultyRouter = require("./routes/faculty");
+const departmentRouter = require("./routes/department");
+const researchRouter = require("./routes/research");
+
 connect();
 
 app.use(logger("dev"));
@@ -22,6 +26,10 @@ app.use(cors())
 // app.use('/', indexRouter);
 app.use("/users", usersRouter);
 app.use("/course", courseRouter);
+app.use("/faculty", facultyRouter);
+app.use("/department", departmentRouter);
+app.use("/research", researchRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

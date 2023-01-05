@@ -2,7 +2,8 @@ const CourseService=require('../Services/CourseService')
 module.exports = class Course{
     static async apiGetAllCoursess(req, res, next){
         try {
-     console.log('hello')
+console.log(req.params)
+
        const courses = await CourseService.getAllCourses();
           if(!courses){
              res.status(404).json("There are no courses published yet!")
@@ -52,5 +53,16 @@ module.exports = class Course{
         } catch (error) {
            res.status(500).json({error: error})
         }
+  }
+  static async apiGetCourses(req, res, next){
+    try {
+         let type=req.params.type;
+         let departmentId=req.params.departmentId;
+        const course = await CourseService.getCoursebyId({type:type,department:departmentId});
+        res.json(course);
+    } catch (error) {
+        res.status(500).json({error: error})
+    }
+
   }
 }

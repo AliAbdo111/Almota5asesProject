@@ -3,7 +3,7 @@ var router = express.Router();
 const UserCountrol = require("../Controllers/UserCountroller");
 const multer = require("multer");
 const authorization = require("../Middlewares/authentication");
-const  {storage ,limits ,fileFillter}= require('../Services/multer')
+const  {storage ,limits ,fileFillter}= require('../utils/multer')
 const uploade = multer({
   storage: storage,
   limits: limits,

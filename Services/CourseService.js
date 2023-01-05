@@ -14,7 +14,9 @@ class CourseService{
     }
     static async getAllCourses(){
         try {
-            const allCourses = await  Course.find();
+        
+            const allCourses = await  Course.find().populate({path:"department", select:"departmentName"});
+
             return allCourses;
         } catch (error) {
             console.log(`Could not fetch Courses ${error}`)
@@ -47,6 +49,25 @@ static async deleteCourse(courseId){
     }
 
     }
+    static async getCoursebyId(courseId){
+        try {
+            const response =  await Course.findById({_id:courseId});
+            return response;
+        } catch (error) {
+            console.log(`Course not found. ${error}`)
+        }
+    
+    }
+     static async getCourses(filter){
+        try {
+            const response =  await Course.find(filter).populate({path:"department", select:"departmentName"});
+            return response;
+        } catch (error) {
+            console.log(`Course not found. ${error}`)
+        }
+    
+    }
+
 }
 
 module.exports=CourseService;

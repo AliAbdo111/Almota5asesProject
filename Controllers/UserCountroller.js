@@ -74,7 +74,7 @@ module.exports = {
       const pagSize = 10;
       const pagNumber = Number(req.params.pagNumber * 1) || 1;
       const skip = (pagNumber - 1) * pagSize;
-      const data = await User.find({}).skip(skip).limit(pagSize);
+      const data = await User.find({}).skip(skip).limit(pagSize).populate({path:"Courses",select:['title', 'descrption']});
       const numOfPage = Math.ceil((await User.count()) / pagSize);
       if (data) {
         res

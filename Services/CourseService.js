@@ -67,6 +67,17 @@ static async deleteCourse(courseId){
         }
     
     }
+    static async addComment(id,data)
+    {
+        try{
+       const response= await Course.findOneAndUpdate(
+            { _id: id }, 
+            { $push: { commentes: data  } })
+            return response;
+        } catch (error) {
+            console.log(`Course not found. ${error}`)
+        }
+    }
 
 }
 

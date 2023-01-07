@@ -2,6 +2,7 @@
 const {MONGO_URI}= require('../Config');
 const mongoose = require("mongoose"); 
 const url =MONGO_URI
+//const url='mongodb://localhost:27017/Almota5ases'
 mongoose.set('strictQuery', true);
 
 const connect = async function() {

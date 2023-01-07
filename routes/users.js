@@ -28,8 +28,11 @@ router.get("/search/:name", UserCountrol.search);
 // update in user data
 router.put("/:id", UserCountrol.update);
 // add Image
-router.put("/addImage/:id" ,uploade.single('image'), UserCountrol.addImage);
 
+router.put("/addImage/:id" ,uploade.single('image'), UserCountrol.addImage);
+// add object course to student
+router.patch("/addCourse/:id" , UserCountrol.addCourse);
+router.patch("/watchCourse/:id/:courseid/:index" , UserCountrol.watchCourse);
 // Change PAssword"
 router.put("/changePasss/:id", UserCountrol.changPassword);
 module.exports = router;

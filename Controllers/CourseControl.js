@@ -58,11 +58,22 @@ console.log(req.params)
     try {
          let type=req.params.type;
          let departmentId=req.params.departmentId;
-        const course = await CourseService.getCoursebyId({type:type,department:departmentId});
+        const course = await CourseService.getGetCourses({type:type,department:departmentId});
         res.json(course);
     } catch (error) {
         res.status(500).json({error: error})
     }
 
   }
+  static async apiAddCommentCourses(req, res, next){
+   try {
+        let id=req.params.id;
+        let data=req.body;
+       const course = await CourseService.addComment(id,data);
+       res.json(course);
+   } catch (error) {
+       res.status(500).json({error: error})
+   }
+
+ }
 }

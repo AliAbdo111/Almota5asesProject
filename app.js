@@ -14,7 +14,7 @@ const usersRouter = require("./routes/users");
 const courseRouter = require("./routes/course");
 const facultyRouter = require("./routes/faculty");
 const departmentRouter = require("./routes/department");
-const researchRouter = require("./routes/research");
+const researchRouter = require("./routes/Research");
 
 connect();
 

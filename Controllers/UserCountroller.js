@@ -18,7 +18,7 @@ module.exports = {
           success: false,
         });
       const cryPassword = await bcrypt.hash(body.password, 10);
-      const token = jwt.sign({ email: body.email }, SECRET_KEY);
+      const token = jwt.sign({ email: body.email }, 'SECRET_KEY');
       const user = User.create({
         ...body,
         token: token,
@@ -185,5 +185,39 @@ addImage: async (req, res) => {
       res.status(404).json(err.message);
     }
   },
-  // get
+  // add course to user
+  addCourse: async (req, res) => {
+    try {
+      const data = req.body.courses;
+      const id=req.params.id;
+      const userData = await User.findOneAndUpdate(
+        { _id: id }, 
+        { $push: { Courses: data  } })
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(404).json(err.message);
+    }
+  },
+// watach videos and check done of all course
+  watchCourse: async (req, res) => {
+    try {
+      const courseid = req.params.courseid;
+      const id=req.params.id;
+      const index=parseInt(req.params.index)
+      const userData = await User.findById(id);
+      let courseIndex=userData.Courses.findIndex((item)=>item._id==courseid);
+      if(courseIndex>0)
+      {
+      userData.Courses[courseIndex].veidos[index]={...userData.Courses[courseIndex].veidos[index],done:true}
+      userData.save();
+      res.status(200).json(userData);
+      }
+      else
+      {
+        throw 'can not find this course student courses list'
+      }
+    } catch (err) {
+      res.status(404).json(err.message);
+    }
+  },
 };

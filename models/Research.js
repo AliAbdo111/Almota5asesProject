@@ -18,6 +18,11 @@ const researchSchema = mongoose.Schema({
         ref:'User',
         required: true
     },
+    type:{
+        type: String,
+        enum:['contuct','research'],
+        required: true
+    }
     
 },
 { timestamps: true },

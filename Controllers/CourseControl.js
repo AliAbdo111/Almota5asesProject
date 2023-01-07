@@ -58,7 +58,11 @@ console.log(req.params)
     try {
          let type=req.params.type;
          let departmentId=req.params.departmentId;
+
         const course = await CourseService.getGetCourses({type:type,department:departmentId});
+
+        const course = await CourseService.getCourses({type:type,department:departmentId});
+
         res.json(course);
     } catch (error) {
         res.status(500).json({error: error})

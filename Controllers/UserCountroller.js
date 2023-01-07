@@ -47,7 +47,7 @@ module.exports = {
           res.status(401).json({ message: "invalied password" });
         }
       } else {
-        res.status(401).json({ message: "the user not register" });
+        res.status(404).json({ message: "the user not register" });
       }
     } catch (err) {
       res.json(`can not sign in ${err}`);

@@ -40,7 +40,7 @@ class CourseService{
 
     }
     }
-static async deleteCourse(courseId){
+    static async deleteCourse(courseId){
     try {
         const deletedResponse = await Course.findOneAndDelete(courseId);
         return deletedResponse;

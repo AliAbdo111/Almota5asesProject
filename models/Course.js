@@ -9,6 +9,7 @@ const courseSchema = mongoose.Schema(
     material: Array,
     veidos: Array,
     demo: String,
+    cover:String,
     users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     commentes: [
       {

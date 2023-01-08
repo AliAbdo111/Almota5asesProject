@@ -29,7 +29,6 @@ console.log(req.params)
            res.status(500).json({error: error});
         }
      }
-  
      static async apiUpdateCourse(req, res, next){
         try {
           
@@ -60,7 +59,7 @@ console.log(req.params)
          let departmentId=req.params.departmentId;
 
       //   const course = await CourseService.getGetCourses({type:type,department:departmentId});
-
+// 
         const course = await CourseService.getCourses({type:type,department:departmentId});
 
         res.json(course);

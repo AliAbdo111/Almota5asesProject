@@ -15,7 +15,9 @@ class CourseService{
     static async getAllCourses(){
         try {
         
-            const allCourses = await  Course.find().populate({path:"department", select:"departmentName"});
+            const allCourses = await  Course.find()
+            .populate({path:"department", select:"departmentName"})
+            .populate({path:"instructor", select:["Name","image"]})
 
             return allCourses;
         } catch (error) {
@@ -60,7 +62,11 @@ class CourseService{
     }
      static async getCourses(filter){
         try {
-            const response =  await Course.find(filter).populate({path:"department", select:"departmentName"});
+        //    console.log(filter);
+            const response =  await Course.find(filter)
+            .populate({path:"department", select:"departmentName"})
+            .populate({path:"instructor", select:["Name","image"]})
+            console.log(response);
             return response;
         } catch (error) {
             console.log(`Course not found. ${error}`)

@@ -1,6 +1,5 @@
 var createError = require("http-errors");
 require("./Config");
-
 var express = require("express");
 var logger = require("morgan");
 const path = require("path");
@@ -45,7 +44,8 @@ app.use(function (err, req, res, next) {
   // render the error message
   res.status(err.status || 500);
   res.json({
-    message: err.message,
+    message:" err.message",
+
   });
 });
 module.exports=Router()

@@ -97,6 +97,22 @@ class CourseService{
             console.log(`Course not found. ${error}`)
         }
     }
+    static async searchCourses(key){
+        try {
+            console.log("test");
+            const Response = await Course.find({$or:[
+            {'instructor.Name':{$regex:key}},
+              {title:{$regex:key}},
+    
+    
+            ]}).populate("instructor").exec();
+            console.log(Response);
+            return Response;
+        } catch (error) {
+            console.log(`Could not exsits this  Course ${error}`);
+        }
+    
+    }
 
 }
 

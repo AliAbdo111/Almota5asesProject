@@ -9,6 +9,8 @@ router.get('/:id', CourseControl.apiGetCourseById);
 router.get('/:type/:departmentId', CourseControl.apiGetCourses);
 // get course by type
 router.get('/course/byType/:facultyId/:type', CourseControl.apiGetCourseByType);
+
+router.get('/title/search/:title', CourseControl.apiSearchCourse);
 router.put('/:id', CourseControl.apiUpdateCourse);
 router.delete('/:id', CourseControl.apiDeleteCourse);
 router.patch('/addcomment/:id', CourseControl.apiAddCommentCourses);

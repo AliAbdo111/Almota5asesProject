@@ -1,5 +1,6 @@
 
 //#region 
+const { response } = require("../app");
 const CourseService = require("../Services/CourseService");
 module.exports = class Course {
   static async apiGetAllCoursess(req, res, next) {
@@ -99,5 +100,21 @@ module.exports = class Course {
       res.status(500).json({ error: error });
     }
   }
-};
+  static async apiSearchCourse(req, res ,next)
+  {
+    try {
+      console.log(req.params.title);
+      let title = req.params.title;
+   const course= await  CourseService.searchCourses(title);
+   if(!course)
+   {
+    res.status(404).send('no courses found')
+   }else{
+    res.status(200).json({message:'you get word search results' ,data:course})
+   }
+    } catch (error) {
+      res.status(500).json({ error: error });
+
+   }
+};}
 //#endregion

@@ -4,12 +4,17 @@ const courseSchema = mongoose.Schema(
   {
     title: String,
     price: Number,
+    time:String,
     instructor: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     descrption: String,
     material: Array,
     veidos: Array,
     demo: String,
     cover:String,
+    fucaltyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Faculty"
+    },
     users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     commentes: [
       {

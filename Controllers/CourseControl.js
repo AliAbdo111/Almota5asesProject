@@ -72,8 +72,9 @@ console.log(req.params)
   static async apiGetCourseByType(req, res, next){
     try {
          let type=req.params.type;
-        const course = await CourseService.getCourseByType({type:type});
-        res.json(course);
+         let fucaltyId=req.params.fucaltyId
+         const course = await CourseService.getCourseByType({type:type,fucaltyId:fucaltyId});
+         res.json(course);
     } catch (error) {
         res.status(500).json({error: error})
     }

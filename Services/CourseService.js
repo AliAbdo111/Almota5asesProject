@@ -66,7 +66,20 @@ class CourseService{
             const response =  await Course.find(filter)
             .populate({path:"department", select:"departmentName"})
             .populate({path:"instructor", select:["Name","image"]})
-            console.log(response);
+            // console.log(response);
+            return response;
+        } catch (error) {
+            console.log(`Course not found. ${error}`)
+        }
+    
+    }
+    static async getCourseByType(filter){
+        try {
+    
+            const response =  await Course.find(filter)
+            .populate({path:"department", select:"departmentName"})
+            .populate({path:"instructor", select:["Name","image"]})
+          
             return response;
         } catch (error) {
             console.log(`Course not found. ${error}`)

@@ -1,3 +1,4 @@
+//#region 
 const Faculty = require("../models/Faculty");
 module.exports = {
   getAllFaculty: async (req, res) => {
@@ -58,3 +59,4 @@ module.exports = {
     }
   },
 };
+//#endregion

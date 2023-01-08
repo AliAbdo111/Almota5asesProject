@@ -1,5 +1,6 @@
-var express = require("express");
-var router = express.Router();
+//#region 
+const express = require("express");
+const router = express.Router();
 const UserCountrol = require("../Controllers/UserCountroller");
 const multer = require("multer");
 const authorization = require("../Middlewares/authentication");
@@ -36,3 +37,5 @@ router.patch("/watchCourse/:id/:courseid/:index" , UserCountrol.watchCourse);
 // Change PAssword"
 router.put("/changePasss/:id", UserCountrol.changPassword);
 module.exports = router;
+//#endregion
+//#endregion

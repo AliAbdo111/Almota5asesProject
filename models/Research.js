@@ -1,5 +1,5 @@
+//#region 
 const mongoose= require('mongoose');
-
 const researchSchema = mongoose.Schema({
     title: {
         type: String,
@@ -31,4 +31,4 @@ const researchSchema = mongoose.Schema({
     strict: true,
   })
 module.exports=mongoose.model('Research',researchSchema);
-;
+//#endregion

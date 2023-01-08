@@ -1,3 +1,4 @@
+//#region 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const USerSchema = mongoose.Schema(
@@ -76,3 +77,4 @@ if(User.isModified("password")) {
 })
 
 module.exports = mongoose.model("User", USerSchema);
+//#endregion

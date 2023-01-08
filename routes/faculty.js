@@ -1,3 +1,4 @@
+//#region 
 const express=require('express');
 const router= express.Router();
 const facultyCountrol=require('../Controllers/facultyControl')
@@ -10,3 +11,4 @@ router.get('/:id',facultyCountrol.getFaculty)
 router.use('/:facultyId/deprtments', departmentRoute)
 
 module.exports=router
+//#endregion

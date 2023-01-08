@@ -1,3 +1,4 @@
+//#region 
 const express =require('express')
 const courseRoute = require('../routes/course')
 
@@ -13,5 +14,5 @@ router.delete('/:id', departmentControl.deleteDepartment)
 router.use('/:departmentId/courses', courseRoute)
 
 
-
-module.exports=router
+module.exports=router;
+//#endregion

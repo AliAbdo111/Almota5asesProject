@@ -11,7 +11,7 @@ const courseSchema = mongoose.Schema(
     veidos: Array,
     demo: String,
     cover:String,
-    fucaltyId: {
+    facultyId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Faculty"
     },

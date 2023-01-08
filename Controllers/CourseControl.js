@@ -68,6 +68,17 @@ console.log(req.params)
     }
 
   }
+  //add get   
+  static async apiGetCourseByType(req, res, next){
+    try {
+         let type=req.params.type;
+        const course = await CourseService.getCourseByType({type:type});
+        res.json(course);
+    } catch (error) {
+        res.status(500).json({error: error})
+    }
+
+  }
   static async apiAddCommentCourses(req, res, next){
    try {
         let id=req.params.id;

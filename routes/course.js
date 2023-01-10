@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router({mergeParams:true});
 const CourseControl = require('../Controllers/CourseControl');
-router.get('/', CourseControl.apiGetAllCoursess);
+router.get('/pagination/:pagnumber/:limit', CourseControl.apiGetAllCoursess);
 router.post('/', CourseControl.apiCreateCourse);
 router.get('/:id', CourseControl.apiGetCourseById);
 // to get all course in department 

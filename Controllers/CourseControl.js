@@ -5,9 +5,12 @@ const CourseService = require("../Services/CourseService");
 module.exports = class Course {
   static async apiGetAllCoursess(req, res, next) {
     try {
-      console.log(req.params);
-
-      const courses = await CourseService.getAllCourses();
+      console.log("kxam");
+  
+  const pagNumber=Number(req.params.pagNumber *1 ) ||1;
+  const limit=req.params.limit  ;
+  const skip= (pagNumber -1) * limit ;
+      const courses = await CourseService.getAllCourses(limit,skip);
       if (!courses) {
         res.status(404).json("There are no courses published yet!");
       } else {
@@ -103,7 +106,7 @@ module.exports = class Course {
   static async apiSearchCourse(req, res ,next)
   {
     try {
-      console.log(req.params.title);
+
       let title = req.params.title;
    const course= await  CourseService.searchCourses(title);
    if(!course)

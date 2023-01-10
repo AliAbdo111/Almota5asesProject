@@ -12,14 +12,15 @@ class CourseService{
             console.log(`can not create course. ${err}`)
         }
     }
-    static async getAllCourses(){
+    static async getAllCourses(limit, skip){
         try {
         
             const allCourses = await  Course.find()
             .populate({path:"department", select:"departmentName"})
-            .populate({path:"instructor", select:["Name","image"]})
-
-            return allCourses;
+            .populate({path:"instructor", select:["Name","image"]}).skip(skip).limit(limit)
+            const numberOfPages = await Course.find().count()
+            console.log(allCourses);
+            return {allCourses: allCourses , numberOfPages:numberOfPages};
         } catch (error) {
             console.log(`Could not fetch Courses ${error}`)
         }
@@ -53,7 +54,9 @@ class CourseService{
     }
     static async getCoursebyId(courseId){
         try {
-            const response =  await Course.findById({_id:courseId});
+            const response =  await Course.findById({_id:courseId})
+            .populate({path:"department", select:"departmentName"})
+            .populate({path:"instructor", select:["Name","image"]})
             return response;
         } catch (error) {
             console.log(`Course not found. ${error}`)

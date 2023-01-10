@@ -11,18 +11,14 @@ const researchSchema = mongoose.Schema({
     },
     phoneNumber: {
         type: String,
-        required: true
+        // required: true
     },
-    publisher:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required: true
-    },
-    type:{
-        type: String,
-        enum:['contuct','research'],
-        required: true
-    }
+    // publisher:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref:'User',
+    //     // required: true
+    // },
+    
     
 },
 { timestamps: true },

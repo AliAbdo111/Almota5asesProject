@@ -25,14 +25,7 @@ class CourseService{
             console.log(`Could not fetch Courses ${error}`)
         }
     }
-    static async getCoursebyId(courseId){
-        try {
-            const response =  await Course.findById({_id: courseId});
-            return response;
-        } catch (error) {
-            console.log(`Course not found. ${error}`)
-        }
-    }
+
     static async updateCourse(courseId,modifier){
         try {
             const updateResponse =  await Course.updateOne({_id:courseId},modifier)

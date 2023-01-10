@@ -36,9 +36,7 @@ cloudinary_id:{
     faculty: {
       type: String,
     },
-    Certificate: {
-      type: String,
-    },
+    Certificate: Array,
     band: {
       type: String,
     },

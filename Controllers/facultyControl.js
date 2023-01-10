@@ -23,7 +23,7 @@ module.exports = {
     try {
       const body = req.body;
       const _id = req.params.id;
-      const faculty = await Faculty.findOneAndUpdate(_id, body, { new: true });
+      const faculty = await Faculty.findByIdAndUpdate(_id, body);
       if (!faculty) {
         res.status(404).json({ message: "Faculty not found" });
       } else {

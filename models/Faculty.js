@@ -7,6 +7,10 @@ const facultySchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    branch:{
+      type: String,
+      required: true,
+    },
     versionKey: false,
     strict: false,
   },

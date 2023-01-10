@@ -3,7 +3,7 @@ const Research = require("../models/Research");
 module.exports = {
     add: async (req, res) => {
     try {
-      console.log("hello");
+  
       const body = req.body;
       const research = await Research.create(body);
       if (!research) {

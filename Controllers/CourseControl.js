@@ -83,7 +83,7 @@ module.exports = class Course {
   static async apiGetCourseByType(req, res, next) {
     try {
       let type = req.params.type;
-      let fucaltyId = req.params.facultyId;
+      let facultyId = req.params.facultyId;
       const course = await CourseService.getCourseByType({
         type: type,
         facultyId: facultyId,

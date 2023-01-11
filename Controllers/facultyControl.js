@@ -1,5 +1,6 @@
 //#region 
 const Faculty = require("../models/Faculty");
+const Department = require("../models/Department");
 module.exports = {
   getAllFaculty: async (req, res) => {
     try {
@@ -13,10 +14,15 @@ module.exports = {
   },
   createFaculty: async (req, res) => {
     try {
-      const course = await Faculty.create(req.body);
-      res.status(201).json(course);
+      const faculty = await Faculty.create(req.body);
+      if(!faculty)
+      {
+        res.status(404).json({message:"error creating"})
+      }else{
+        res.status(201).json("the creation successful");
+      }
     } catch (e) {
-      res.status(500).send({ message: "Server Error Whene creat course" });
+      res.status(500).json({ message: "Server Error Whene creat faculty" });
     }
   },
   updateFaculty: async (req, res) => {
@@ -30,19 +36,24 @@ module.exports = {
         res.status(200).json("the faculty is updated");
       }
     } catch (e) {
-      res.status(500).send({ message: "something went wrong" });
+      res.status(500).send({ message: "Server Error Whene update faculty" });
     }
   },
   deleteFaculty: async (req, res) => {
     try {
       const _id = req.params.id;
-      const faculty = await Faculty.findByIdAndDelete(_id);
-      if (!faculty) {
+      const faculty= _id
+      const facultyDelete = await Faculty.findByIdAndDelete(_id);
+      const department = await Department.deleteMany({faculty: req.params.id})
+      
+      if (!facultyDelete) {
         res.status(404).json("the Faculty not founded");
+      }else{
+
+        res.status(200).json("the Faculty already deleted");
       }
-      res.status(200).json("the Faculty already deleted");
     } catch (e) {
-      res.status(500).json({ message: "something went wrong" });
+      res.status(500).json({ message: "Server Error Whene delete faculty" });
     }
   },
   getFaculty: async (req, res) => {
@@ -55,7 +66,7 @@ module.exports = {
         res.status(200).json(faculty);
       }
     } catch (e) {
-      res.status(500).json({ message: "something went wrong when get" });
+      res.status(500).json({ message: "Server Error Whene get faculty" });
     }
   },
 };

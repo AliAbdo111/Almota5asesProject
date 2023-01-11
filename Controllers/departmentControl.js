@@ -28,7 +28,7 @@ module.exports = {
       const department = await Department.create(req.body);
       res.status(201).json("the department created");
     } catch (e) {
-      res.status(500).send({ message: "Server Error Whene creat department" });
+      res.status(500).json({ message: "Server Error Whene creat department" });
     }
   },
   modifyDepartment: async (req, res) => {

@@ -7,12 +7,14 @@ module.exports = {
       const body = req.body;
       const research = await Research.create(body);
       if (!research) {
-        return res.status(400).json({
+        return res.status(404).json({
           message: "research not created",
+          status: 404
         });
       } else {
         return res.status(201).json({
           message: "research created",
+          status:201
         });
       }
     } catch (e) {
@@ -54,7 +56,7 @@ module.exports = {
       const research = await Research.find({})
       .populate({ path: "publisher", select:["email" ,"Name" ,"address"]})
       if (!research) {
-        res.status(400).json({ message: "research not found" });
+        res.status(404).json({ message: "research not found" });
       } else {
         res.status(200).json({ message: "research found", data: research });
       }

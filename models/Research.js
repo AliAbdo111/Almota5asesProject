@@ -13,13 +13,15 @@ const researchSchema = mongoose.Schema({
         type: String,
         // required: true
     },
-    // publisher:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref:'User',
-    //     // required: true
-    // },
-    
-    
+    publisher:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        // required: true
+    },
+    type: {
+        type:String,
+        enum:['research', 'contuct']
+    },
 },
 { timestamps: true },
 {

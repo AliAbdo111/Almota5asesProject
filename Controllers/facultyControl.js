@@ -1,4 +1,4 @@
-//#region 
+//#region
 const Faculty = require("../models/Faculty");
 const Department = require("../models/Department");
 module.exports = {
@@ -15,10 +15,9 @@ module.exports = {
   createFaculty: async (req, res) => {
     try {
       const faculty = await Faculty.create(req.body);
-      if(!faculty)
-      {
-        res.status(404).json({message:"error creating"})
-      }else{
+      if (!faculty) {
+        res.status(404).json({ message: "error creating" });
+      } else {
         res.status(201).json("the creation successful");
       }
     } catch (e) {
@@ -42,14 +41,14 @@ module.exports = {
   deleteFaculty: async (req, res) => {
     try {
       const _id = req.params.id;
-      const faculty= _id
       const facultyDelete = await Faculty.findByIdAndDelete(_id);
-      const department = await Department.deleteMany({faculty: req.params.id})
-      
+      const department = await Department.deleteMany({
+        faculty: req.params.id,
+      });
+
       if (!facultyDelete) {
         res.status(404).json("the Faculty not founded");
-      }else{
-
+      } else {
         res.status(200).json("the Faculty already deleted");
       }
     } catch (e) {
